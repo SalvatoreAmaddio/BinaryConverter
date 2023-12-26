@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script src="binary.js"></script>
+</head>
+<body>
+    
+    <div id="wrapper">
+        <header>
+            <h1>Binary Converter</h1>
+        </header>
+
+        <section class="layers" id="decimalSection">
+            <div id="decimalNumber">
+                <input class="input" placeholder="number to convert..." type="number">
+                <button class="input" id="convertButton" onclick="clickMe()">CONVERT</button>
+            </div>
+        </section>
+
+        <section class="layers" id="binarySection">
+            <div id="binaryNumber">
+                <div id="byte">
+                    <div class="nibble">
+                        <div class="bit">
+                            <p>0</p>
+                        </div>
+
+                        <div class="bit">
+                            <p>0</p>
+                        </div>
+
+                        <div class="bit">
+                            <p>0</p>
+                        </div>
+
+                        <div class="bit">
+                            <p>0</p>
+                        </div>
+                    </div>
+
+
+                    <div class="nibble">
+                        <div class="bit">
+                            <p>0</p>
+                        </div>
+
+                        <div class="bit">
+                            <p>0</p>
+                        </div>
+
+                        <div class="bit">
+                            <p>0</p>
+                        </div>
+
+                        <div class="bit">
+                            <p>0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+<script>
+
+    let div = document.getElementsByClassName("bit")[0];
+    let p = div.children[0];
+    let inter;
+
+    function stop() 
+    {
+        clearInterval(inter);
+    }
+
+    function remove() 
+    {
+        div.classList.remove("anima");
+        p.classList.remove("anima");
+        p.innerHTML = (p.innerHTML=="0") ? "1" : "0";
+    }
+
+    function clickMe() 
+    {
+        div.classList.add("anima");
+        p.classList.add("anima");
+        setTimeout(remove,140);
+    }
+
+    function s() 
+    {
+        div.classList.add("anima");
+        p.classList.add("anima");
+        setTimeout(remove,140);
+    }
+</script>
+</html>
