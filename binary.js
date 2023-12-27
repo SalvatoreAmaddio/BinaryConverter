@@ -2,6 +2,11 @@ class Bit
 {
     value = 0;
 
+    get reversValue() 
+    {
+        return (this.value==0) ? 1 : 0;
+    }
+    
     toString() 
     {
         return this.value;
@@ -45,6 +50,11 @@ class Nibble
     getBit(index) 
     {
         return this.#bits[index];
+    }
+
+    getReversBit(index) 
+    {
+        return (this.#bits[index].value==0) ? 1 : 0;
     }
 
     toString() 
@@ -189,7 +199,7 @@ class Convert
     {
         return this.#nibbles.length;
     }
-    
+
     printNibbles() 
     {
         for(let n = 0; n < this.#nibbles.length; n++)

@@ -108,7 +108,6 @@ header
 .anima 
 {
     animation-name: a;
-    animation-duration: .5s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
 }

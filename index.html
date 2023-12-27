@@ -52,32 +52,34 @@
 
 <script>
 
-    let nibbles = document.getElementsByClassName("nibble");
     let byte = document.getElementById("byte");
     let div = document.getElementsByClassName("bit")[0];
     let p = div.children[0];
     let inter;
 
-    function createNibble() 
+    function createNibble(conv) 
     {
-        let nibble = document.createElement("div");
-        nibble.classList.add("nibble");
-
-        for(let b = 0; b < 4; b++) 
+        for(let i = 0; i < conv.nibblesCount; i++) 
         {
-            let bit = document.createElement("div");
-            bit.classList.add("bit");
-            let p = document.createElement("p");
-            p.innerHTML = 0;
-            bit.appendChild(p);
-            nibble.appendChild(bit);
+            let nibble = document.createElement("div");
+            nibble.classList.add("nibble");
+
+            for(let b = 0; b < 4; b++) 
+            {
+                let bit = document.createElement("div");
+                bit.classList.add("bit");
+                let p = document.createElement("p");
+                p.innerHTML = conv.getNibble(i).getBit(b).reversValue; 
+                bit.appendChild(p);
+                nibble.appendChild(bit);
+            }
+            byte.appendChild(nibble);
         }
-        byte.appendChild(nibble);
     }
 
-    function removeAnimation() 
+    function removeAnimation(bit, p) 
     {
-        div.classList.remove("anima");
+        bit.classList.remove("anima");
         p.classList.remove("anima");
         p.innerHTML = (p.innerHTML=="0") ? "1" : "0";
     }
@@ -91,23 +93,29 @@
             return;
         }
 
-        let conv = new Convert(number);
-
-        for(let i = 0; conv.nibblesCount; i++) 
+        byte.innerHTML = "";
+        createNibble(new Convert(number));
+        let sec = 0;
+        let nibbles = document.getElementsByClassName("nibble");
+        for(let n = 0; n < nibbles.length; n++) 
         {
-            createNibble();
+            let nibble = nibbles[n];
+            for(let b = 0; b < nibble.children.length; b++) 
+            {
+                let bit = nibble.children[b];
+                let p = bit.children[0];
+                sec=sec+1;
+                toggleAnimation(bit,p,sec);
+            }
         }
-
-//        div.classList.add("anima");
-//        p.classList.add("anima");
-//        setTimeout(removeAnimation,140);
     }
 
-    function toggleAnimation() 
+    function toggleAnimation(bit, p,sec) 
     {
-        div.classList.add("anima");
+        bit.style.animationDelay = `0.${sec}s`;
+        bit.classList.add("anima");
         p.classList.add("anima");
-        setTimeout(removeAnimation,140);
+        setTimeout(()=>{removeAnimation(bit,p)},140);
     }
 </script>
 </html>
