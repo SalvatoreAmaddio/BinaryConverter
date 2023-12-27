@@ -19,33 +19,14 @@
 
         <section class="layers" id="decimalSection">
             <div id="decimalNumber">
-                <input class="input" placeholder="number to convert..." type="number">
-                <button class="input" id="convertButton" onclick="clickMe()">CONVERT</button>
+                <input class="input" id="number" placeholder="number to convert..." type="number">
+                <button class="input" id="convertButton" onclick="convert()">CONVERT</button>
             </div>
         </section>
 
         <section class="layers" id="binarySection">
             <div id="binaryNumber">
                 <div id="byte">
-                    <div class="nibble">
-                        <div class="bit">
-                            <p>0</p>
-                        </div>
-
-                        <div class="bit">
-                            <p>0</p>
-                        </div>
-
-                        <div class="bit">
-                            <p>0</p>
-                        </div>
-
-                        <div class="bit">
-                            <p>0</p>
-                        </div>
-                    </div>
-
-
                     <div class="nibble">
                         <div class="bit">
                             <p>0</p>
@@ -71,34 +52,62 @@
 
 <script>
 
+    let nibbles = document.getElementsByClassName("nibble");
+    let byte = document.getElementById("byte");
     let div = document.getElementsByClassName("bit")[0];
     let p = div.children[0];
     let inter;
 
-    function stop() 
+    function createNibble() 
     {
-        clearInterval(inter);
+        let nibble = document.createElement("div");
+        nibble.classList.add("nibble");
+
+        for(let b = 0; b < 4; b++) 
+        {
+            let bit = document.createElement("div");
+            bit.classList.add("bit");
+            let p = document.createElement("p");
+            p.innerHTML = 0;
+            bit.appendChild(p);
+            nibble.appendChild(bit);
+        }
+        byte.appendChild(nibble);
     }
 
-    function remove() 
+    function removeAnimation() 
     {
         div.classList.remove("anima");
         p.classList.remove("anima");
         p.innerHTML = (p.innerHTML=="0") ? "1" : "0";
     }
 
-    function clickMe() 
+    function convert() 
     {
-        div.classList.add("anima");
-        p.classList.add("anima");
-        setTimeout(remove,140);
+        let number = document.getElementById("number").value;
+        if (!number) 
+        {
+            alert("Please insert a number");
+            return;
+        }
+
+        let conv = new Convert(number);
+
+        for(let i = 0; conv.nibblesCount; i++) 
+        {
+            createNibble();
+        }
+
+//        div.classList.add("anima");
+//        p.classList.add("anima");
+//        setTimeout(removeAnimation,140);
     }
 
-    function s() 
+    function toggleAnimation() 
     {
         div.classList.add("anima");
         p.classList.add("anima");
-        setTimeout(remove,140);
+        setTimeout(removeAnimation,140);
     }
 </script>
 </html>
