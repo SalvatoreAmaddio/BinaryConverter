@@ -19,7 +19,6 @@
 header 
 {
     background-color: whitesmoke;
-    border: 1px solid black;
     text-align: center;
     padding: 1rem;
 }
@@ -94,6 +93,7 @@ header
     max-width: 28rem;
     margin: 0 auto;
     position: relative;
+    border-radius: 1.4rem;
 }
 
 #byte 
@@ -135,6 +135,19 @@ header
 footer 
 {
     text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.staticFooter 
+{
+    position: static;
+}
+
+footer p 
+{
+    margin-block: .5rem;
 }
 
 @keyframes a
@@ -143,6 +156,15 @@ footer
     {
         transform: rotateX(180deg);
     }
+}
+
+@media (pointer:none), (pointer:coarse) 
+{
+    footer 
+    {
+        position: static;
+    }
+
 }
 
 @media screen and (max-width:466.5px) 

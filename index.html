@@ -40,16 +40,23 @@
             </section>
         </main>
 
-        <footer>
+        <footer class="layers">
             <p>JavaScript Project: Binary Converter</p>
+            <p><a href="https://github.com/SalvatoreAmaddio/BinaryConverter" target="_blank">GitHub</a></p>
+            <p>Copyright © <span id="copyrightYear">2023</span> Salvatore Amaddio Rivolta. All rights reserved.</p>
+            <p><a href="https://salvatoreamaddio.co.uk/">www.salvatoreamaddio.co.uk</a></p>
         </footer>
     </div>
 </body>
 
 <script>
+    let footer = document.getElementsByTagName("footer")[0];
     let numberField = document.getElementById("number");
     let number = sessionStorage.getItem("number");
     let result = document.getElementById("result");
+    let copyrightYear = document.getElementById("copyrightYear");
+    copyrightYear.innerHTML = new Date().getFullYear();
+
     if (!number) number = 0;
 
     let conv = new Convert(number);
@@ -85,7 +92,6 @@
     function convert() 
     {
         number = numberField.value;
-
         if (!number) 
         {
             alert("Please insert a number");
@@ -95,6 +101,11 @@
         sessionStorage.setItem("number",number);
         byte.innerHTML = "";
         conv = new Convert(number);
+        if (conv.nibblesCount > 1) 
+            footer.classList.add("staticFooter")
+        else
+            footer.classList.remove("staticFooter")
+
         createNibble(conv);
         result.innerHTML = conv.result;
         let sec = 0;

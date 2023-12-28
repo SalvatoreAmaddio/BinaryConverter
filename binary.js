@@ -129,6 +129,11 @@ class Convert
         return this.#num;
     }
 
+    get nibblesCount() 
+    {
+        return this.#nibbles.length;
+    }
+
     calculatePowers() 
     {
         let i = 0;
