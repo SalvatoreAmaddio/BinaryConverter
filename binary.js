@@ -216,8 +216,9 @@ class Convert
         let str = "[";
 
         for(let n = 0; n < this.#nibbles.length; n++)
-            str = str + this.#nibbles[n] + " ";
+            str = str + this.#nibbles[n] + ",";
 
+        str=str.slice(0, -1);
         str = str + "]";
         return str;
     }
