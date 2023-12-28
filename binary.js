@@ -107,20 +107,26 @@ class Convert
     #power = 0;
     #binPlaceValues = [];
     #nibbles = [];
-    #bytes = [];
     #str;
+    #num;
 
     constructor(number) 
     {
+        this.#num = number;
         this.#number = number;
         this.calculatePowers();
         this.#buildUpToString();
         this.#breakIntoNibbles();
     }
 
+    get result() 
+    {
+        return `The binary value of ${this.number} is:`;
+    }
+
     get number()
     {
-        return this.#number;
+        return this.#num;
     }
 
     calculatePowers() 
@@ -198,6 +204,17 @@ class Convert
     get nibblesCount() 
     {
         return this.#nibbles.length;
+    }
+
+    nibblesAsStr() 
+    {
+        let str = "[";
+
+        for(let n = 0; n < this.#nibbles.length; n++)
+            str = str + this.#nibbles[n] + " ";
+
+        str = str + "]";
+        return str;
     }
 
     printNibbles() 

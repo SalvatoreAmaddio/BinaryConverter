@@ -28,7 +28,36 @@ header
 {
     padding: 1rem;
     background-color: whitesmoke;
-    margin-top: 1rem;
+    margin-top: .5rem;
+}
+
+#result 
+{
+    text-align: center;
+    margin-bottom: .5rem;
+}
+
+#clipboard 
+{
+    width: 2.5rem;
+    height: 2.5rem;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    z-index: 2;
+    right: 0;
+    top: 0;
+}
+
+#clipboard img 
+{
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    padding-top: .35rem;
+    padding-left: .35rem;
 }
 
 #decimalNumber 
@@ -62,6 +91,9 @@ header
     border: 1px solid black;
     background-color: orange;
     text-align: center;
+    width: 28rem;
+    margin: 0 auto;
+    position: relative;
 }
 
 #byte 
@@ -79,18 +111,7 @@ header
     padding: .1rem;
     position: relative;
     float: left;
-    margin-right: .5rem;
     background-color: var(--grayDark);
-}
-
-#byte .nibble:first-child 
-{
-    margin-top: 0;
-}
-
-#byte .nibble:last-child 
-{
-    margin-right: 0rem;
 }
 
 .bit

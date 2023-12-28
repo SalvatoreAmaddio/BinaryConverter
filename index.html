@@ -19,31 +19,21 @@
 
         <section class="layers" id="decimalSection">
             <div id="decimalNumber">
-                <input class="input" id="number" placeholder="number to convert..." type="number">
+                <input class="input" id="number" value="0" onchange="convert()" placeholder="number to convert..." type="number">
                 <button class="input" id="convertButton" onclick="convert()">CONVERT</button>
             </div>
         </section>
 
         <section class="layers" id="binarySection">
+            <div id="result">
+                <h3>The binary value of x is x</h3>
+            </div>
+            
             <div id="binaryNumber">
+                <div onclick="copy()" id="clipboard">
+                    <img src="copy.png">
+                </div>    
                 <div id="byte">
-                    <div class="nibble">
-                        <div class="bit">
-                            <p>0</p>
-                        </div>
-
-                        <div class="bit">
-                            <p>0</p>
-                        </div>
-
-                        <div class="bit">
-                            <p>0</p>
-                        </div>
-
-                        <div class="bit">
-                            <p>0</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -51,11 +41,20 @@
 </body>
 
 <script>
+    let numberField = document.getElementById("number");
+    let number = sessionStorage.getItem("number");
+    let result = document.getElementById("result");
+    if (!number) number = 0;
 
-    let byte = document.getElementById("byte");
-    let div = document.getElementsByClassName("bit")[0];
-    let p = div.children[0];
-    let inter;
+    let conv = new Convert(number);
+
+    numberField.value = number;
+    convert();
+
+    function copy() 
+    {
+        navigator.clipboard.writeText(conv.nibblesAsStr());
+    }
 
     function createNibble(conv) 
     {
@@ -77,24 +76,21 @@
         }
     }
 
-    function removeAnimation(bit, p) 
-    {
-        bit.classList.remove("anima");
-        p.classList.remove("anima");
-        p.innerHTML = (p.innerHTML=="0") ? "1" : "0";
-    }
-
     function convert() 
     {
-        let number = document.getElementById("number").value;
+        number = numberField.value;
+
         if (!number) 
         {
             alert("Please insert a number");
             return;
         }
 
+        sessionStorage.setItem("number",number);
         byte.innerHTML = "";
-        createNibble(new Convert(number));
+        conv = new Convert(number);
+        createNibble(conv);
+        result.innerHTML = conv.result;
         let sec = 0;
         let nibbles = document.getElementsByClassName("nibble");
         for(let n = 0; n < nibbles.length; n++) 
@@ -112,10 +108,18 @@
 
     function toggleAnimation(bit, p,sec) 
     {
-        bit.style.animationDelay = `0.${sec}s`;
+        bit.style.animationDelay = `${sec}s`;
         bit.classList.add("anima");
         p.classList.add("anima");
-        setTimeout(()=>{removeAnimation(bit,p)},140);
+        setTimeout(()=>{removeAnimation(bit,p)},10);
     }
+
+    function removeAnimation(bit, p) 
+    {
+        bit.classList.remove("anima");
+        p.classList.remove("anima");
+        p.innerHTML = (p.innerHTML=="0") ? "1" : "0";
+    }
+
 </script>
 </html>
