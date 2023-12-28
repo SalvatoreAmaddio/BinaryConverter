@@ -121,7 +121,7 @@ class Convert
 
     get result() 
     {
-        return `The binary value of ${this.number} is:`;
+        return `The binary value of ${this.number.toLocaleString()} is:`;
     }
 
     get number()

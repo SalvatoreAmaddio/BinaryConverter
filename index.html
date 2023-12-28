@@ -12,32 +12,37 @@
     <link rel="icon" href="binary-code.png">
 </head>
 <body>
-    
     <div id="wrapper">
         <header>
             <h1>Binary Converter</h1>
         </header>
 
-        <section class="layers" id="decimalSection">
-            <div id="decimalNumber">
-                <input class="input" id="number" value="0" onchange="convert()" placeholder="number to convert..." type="number">
-                <button class="input" id="convertButton" onclick="convert()">CONVERT</button>
-            </div>
-        </section>
-
-        <section class="layers" id="binarySection">
-            <div id="result">
-                <h3>The binary value of x is x</h3>
-            </div>
-            
-            <div id="binaryNumber">
-                <div onclick="copy()" id="clipboard">
-                    <img src="copy.png">
-                </div>    
-                <div id="byte">
+        <main>
+            <section class="layers" id="decimalSection">
+                <div id="decimalNumber">
+                    <input class="input" id="number" value="0" onchange="convert()" placeholder="number to convert..." type="number">
+                    <button class="input" id="convertButton" onclick="convert()">CONVERT</button>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="layers" id="binarySection">
+                <div id="result">
+                    <h3>The binary value of x is x</h3>
+                </div>
+                
+                <div id="binaryNumber">
+                    <div onclick="copy()" id="clipboard">
+                        <img src="copy.png">
+                    </div>    
+                    <div id="byte">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>JavaScript Project: Binary Converter</p>
+        </footer>
     </div>
 </body>
 
